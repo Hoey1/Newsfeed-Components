@@ -1,12 +1,12 @@
 /* This is the data we will be using, study it but don't change anything, yet. */
 
 let menuItems = [
-  'Students',
-  'Faculty',
+  "Students",
+  "Faculty",
   "What's New",
-  'Tech Trends',
-  'Music',
-  'Log Out'
+  "Tech Trends",
+  "Music",
+  "Log Out",
 ];
 
 /* 
@@ -31,3 +31,50 @@ let menuItems = [
 
   Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned markup to the DOM.
 */
+
+//?
+const header = document.querySelector(".header");
+const menuButton = document.querySelector(".menu-button");
+
+function menuMaker(array) {
+  const menu = document.createElement("div");
+  const list = document.createElement("ul");
+
+  header.append(menu);
+  menu.append(list);
+
+  menu.classList.add("menu");
+
+  menuItems.forEach((element) => {
+    const item = document.createElement("li");
+    item.textContent = element;
+    list.append(item);
+  });
+
+  menuButton.addEventListener("click", (event) => {
+    menu.classList.toggle("menu-open");
+  });
+
+  return menu;
+  // append after eventlistener?
+}
+
+//? Use map since we have blank array
+menuItems.map((item) => {
+  header.append(menuMaker(item));
+});
+
+//* From Guided
+// var data = ['mike', 'brian', 'jeff']
+
+// function FriendMaker(name) {
+//   var friend = document.createElement('div')
+//* set all necessary attributes and nesting of the element...
+//   friend.textContent = `My friend ${name}`
+//   return friend
+// }
+
+// data.forEach(name => {
+//   var friend = FriendMaker(name)
+//   document.body.appendChild(friend)
+// })
